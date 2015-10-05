@@ -1,4 +1,4 @@
-package com.example.tekvy.gcmclient;
+package com.example.tekvy.gcmclient.gcm;
 
 /**
  * Created by tekvy on 22/4/15.

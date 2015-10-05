@@ -7,20 +7,17 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
+
+import com.example.tekvy.gcmclient.adapters.MemberListAdapter;
+import com.example.tekvy.gcmclient.models.MemberListModel;
 import com.squareup.okhttp.CacheControl;
 import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import com.squareup.okhttp.OkHttpClient;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MemberList extends ActionBarActivity {
+public class MemberListActivity extends ActionBarActivity {
 
     OkHttpClient client;
 
@@ -57,7 +54,7 @@ public class MemberList extends ActionBarActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        Toast.makeText(MemberList.this, "Loading",Toast.LENGTH_LONG ).show();
+        Toast.makeText(MemberListActivity.this, "Loading",Toast.LENGTH_LONG ).show();
 
         modelList=new ArrayList<MemberListModel>();
         listAdapter = new MemberListAdapter(modelList,getApplicationContext());
@@ -72,33 +69,6 @@ public class MemberList extends ActionBarActivity {
         catch (Exception e){
             e.printStackTrace();
         }
-
-
-        mRecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        // TODO Handle item click
-
-                // Toast.makeText(getApplicationContext(),  position,Toast.LENGTH_LONG).show();
-
-                       String ss= Integer.toString(position);
-
-                         String email = modelList.get(position).getEmail();
-                        Log.d(ss,email);
-
-                        Intent i = new Intent(MemberList.this, SendMessageActivity.class);
-                        i.putExtra("email",email);
-                        startActivity(i);
-
-                    }
-                })
-        );
-
-
-
-
-
-
     }
 
     public void runPostRequest(){
@@ -121,7 +91,7 @@ public class MemberList extends ActionBarActivity {
                 Log.d("Response", mainResponse);
                 if(mainResponse.contains("users")){
 
-                    MemberList.this.runOnUiThread(new Runnable() {
+                    MemberListActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 

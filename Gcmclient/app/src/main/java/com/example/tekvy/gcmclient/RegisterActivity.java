@@ -104,7 +104,7 @@ public class RegisterActivity extends ActionBarActivity {
         member_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(RegisterActivity.this, MemberList.class);
+                Intent i = new Intent(RegisterActivity.this, MemberListActivity.class);
                 startActivity(i);
             }
         });

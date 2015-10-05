@@ -1,12 +1,13 @@
-package com.example.tekvy.gcmclient;
+package com.example.tekvy.gcmclient.gcm;
 
 /**
  * Created by tekvy on 22/4/15.
  */
+import com.example.tekvy.gcmclient.MemberListActivity;
+import com.example.tekvy.gcmclient.R;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import android.app.IntentService;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -16,10 +17,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * This {@code IntentService} does the actual handling of the GCM message.
@@ -89,7 +86,7 @@ public class GcmIntentService extends IntentService {
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, MemberList.class), 0);
+                new Intent(this, MemberListActivity.class), 0);
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
