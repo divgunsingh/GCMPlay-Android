@@ -3,8 +3,9 @@ package com.example.tekvy.gcmclient;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,11 +28,11 @@ import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class RegisterActivity extends ActionBarActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     Button submit_button, member_button;
     EditText name_editText,email_editText,password_editText;
-
+    Toolbar toolbar;
     public static final String EXTRA_MESSAGE = "message";
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
@@ -63,7 +64,8 @@ public class RegisterActivity extends ActionBarActivity {
           email_editText = (EditText) findViewById(R.id.email);
           password_editText = (EditText) findViewById(R.id.password);
           member_button  = (Button) findViewById(R.id.members);
-
+          toolbar = (Toolbar) findViewById(R.id.toolbar);
+          setSupportActionBar(toolbar);
           client = new OkHttpClient();
 
 
@@ -77,6 +79,7 @@ public class RegisterActivity extends ActionBarActivity {
         } else {
             Log.i(TAG, "No valid Google Play Services APK found.");
         }
+
 
 
         submit_button.setOnClickListener(new View.OnClickListener() {
@@ -229,23 +232,5 @@ public class RegisterActivity extends ActionBarActivity {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_register, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

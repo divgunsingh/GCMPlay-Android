@@ -3,6 +3,8 @@ package com.example.tekvy.gcmclient;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,13 +23,15 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 
 
-public class SendMessageActivity extends ActionBarActivity {
+public class SendMessageActivity extends AppCompatActivity {
 
     EditText header_editText, content_ediitText;
     Button send_button;
     String mainResponse , headerTxt, contentTxt;
     OkHttpClient client;
     String email;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,8 @@ public class SendMessageActivity extends ActionBarActivity {
         Bundle extras = getIntent().getExtras();
         email = extras.getString("email");
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         send_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

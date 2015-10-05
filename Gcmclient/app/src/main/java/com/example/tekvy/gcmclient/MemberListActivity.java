@@ -3,9 +3,11 @@ package com.example.tekvy.gcmclient;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.example.tekvy.gcmclient.adapters.MemberListAdapter;
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MemberListActivity extends ActionBarActivity {
+public class MemberListActivity extends AppCompatActivity {
 
     OkHttpClient client;
 
@@ -37,7 +39,7 @@ public class MemberListActivity extends ActionBarActivity {
     List<MemberListModel> modelList;
     String mainResponse;
     MemberListAdapter listAdapter;
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,8 @@ public class MemberListActivity extends ActionBarActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
