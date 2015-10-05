@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class RegisterActivity extends ActionBarActivity {
 
-    Button submit_button;
+    Button submit_button, member_button;
     EditText name_editText,email_editText,password_editText;
 
     public static final String EXTRA_MESSAGE = "message";
@@ -62,8 +62,9 @@ public class RegisterActivity extends ActionBarActivity {
           name_editText = (EditText) findViewById(R.id.name);
           email_editText = (EditText) findViewById(R.id.email);
           password_editText = (EditText) findViewById(R.id.password);
+          member_button  = (Button) findViewById(R.id.members);
 
-        client = new OkHttpClient();
+          client = new OkHttpClient();
 
 
         if (checkPlayServices()) {
@@ -97,6 +98,14 @@ public class RegisterActivity extends ActionBarActivity {
 
                 }
 
+            }
+        });
+
+        member_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RegisterActivity.this, MemberList.class);
+                startActivity(i);
             }
         });
 
@@ -179,7 +188,9 @@ public class RegisterActivity extends ActionBarActivity {
                     RegisterActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            name_editText.setText(regid);
+                           // name_editText.setText(regid);
+
+                         Toast.makeText(getApplicationContext(),regid,Toast.LENGTH_LONG).show();
                         }
                     });
                 } catch (IOException ex) {
@@ -193,7 +204,7 @@ public class RegisterActivity extends ActionBarActivity {
 
             @Override
             protected void onPostExecute(String msg) {
-                name_editText.append(msg + "\n");
+                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
             }
         }.execute(null, null, null);
     }

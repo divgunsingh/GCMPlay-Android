@@ -65,7 +65,7 @@ public class GcmIntentService extends IntentService {
                     Log.i(TAG, "Working... " + (i + 1)
                             + "/5 @ " + SystemClock.elapsedRealtime());
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                     }
                 }
@@ -89,21 +89,7 @@ public class GcmIntentService extends IntentService {
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, MainActivity.class), 0);
-
-//        try {
-//             msg.replace("Bundle","");
-//            Log.d("TEST msg", msg);
-////            JSONArray ar = new JSONArray(msg);
-////            JSONObject ob= ar.getJSONObject(0);
-////
-////            header = ob.getString("header");
-////            content = ob.getString("content");
-//            Log.d("Full MSg", msg);
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+                new Intent(this, MemberList.class), 0);
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
